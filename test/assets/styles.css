@@ -128,8 +128,10 @@ h3 { font-size: 22px; font-weight: 600; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (max-width: 520px) {
-  .cta-row { flex-direction: column; align-items: stretch; }
-  .cta-row .btn { width: 100%; }
+  /* Stacked on phones, sized to the longer label rather than the full width,
+     so both buttons match without empty space at the ends. */
+  .cta-row { display: grid; grid-template-columns: max-content; justify-content: start; }
+  .band-cta, .closing .cta-row { justify-content: center; }
 }
 
 /* ---------- Header ---------- */
@@ -383,10 +385,13 @@ h3 { font-size: 22px; font-weight: 600; }
 .waitlist-label { font-size: 17px; color: var(--muted); margin-bottom: 28px; }
 
 .waitlist form { display: flex; flex-direction: column; gap: 12px; }
-@media (min-width: 520px) { .waitlist form { flex-direction: row; } }
+@media (min-width: 520px) {
+  .waitlist form { flex-direction: row; }
+  .waitlist input { flex: 1; }
+}
 
 .waitlist input {
-  flex: 1; height: 56px; padding: 0 18px;
+  height: 56px; padding: 0 18px;
   border: 1.5px solid var(--line); border-radius: 14px;
   background: var(--bg); color: var(--ink);
   font: 400 17px var(--sans); width: 100%;
@@ -407,6 +412,12 @@ h3 { font-size: 22px; font-weight: 600; }
 .site-footer a { text-decoration: none; }
 .site-footer a:hover { color: var(--ink); }
 .site-footer .legal { width: 100%; font-size: 13px; }
+@media (max-width: 620px) {
+  .site-footer { padding: 40px 0; }
+  .site-footer .container { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .site-footer nav { margin-left: 0; flex-wrap: wrap; gap: 8px 20px; }
+  .site-footer .legal { margin-top: 8px; }
+}
 
 /* ---------- Scroll reveal ----------
    Dominika specifically called out the gradual reveal on the wedding site.
