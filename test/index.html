@@ -4,13 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Neala — your pattern, your plan, no guessing</title>
-  <meta name="description" content="Menopause isn't one experience. Neala identifies your unique hormonal pattern and builds your meals, movement and daily coaching around it.">
+  <title>Neala - Personalised menopause coaching</title>
+  <meta name="description" content="Menopause isn't one experience. Neala identifies your unique menopause profile and builds your meals, movement and daily coaching around it.">
   <!-- Review copy. Not the canonical homepage, and deliberately unlisted:
        robots.txt disallows /test/ as well. -->
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Link previews (iMessage, WhatsApp, Slack, social). Absolute URL: repoint
+       when /test becomes the homepage. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Neala">
+  <meta property="og:title" content="Neala - Personalised menopause coaching">
+  <meta property="og:description" content="Personalised menopause coach for women who've tried it all.">
+  <meta property="og:image" content="https://neala.co/test/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#FAF7F2">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,96 +31,12 @@
 
   <link rel="stylesheet" href="assets/styles.css">
 
-  <style>
-    /* The door is shut before first paint: the inline script below adds
-       .locked to <html> synchronously, so the page underneath never flashes. */
-    html.locked, html.locked body { overflow: hidden; }
-    html.locked body > *:not(#gate) { display: none !important; }
-    html:not(.locked) #gate { display: none; }
-
-    #gate {
-      position: fixed; inset: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: center;
-      padding: 24px; background: #FAF7F2;
-    }
-    #gate form { width: 100%; max-width: 340px; text-align: center; }
-    #gate .g-brand {
-      font: 600 28px "Cormorant Garamond", Georgia, serif;
-      letter-spacing: .06em; color: #2C2825; margin: 0 0 12px;
-    }
-    #gate .g-hint {
-      font: 400 15px/1.5 "DM Sans", system-ui, sans-serif;
-      color: #8C7B6E; margin: 0 0 28px;
-    }
-    #gate input {
-      width: 100%; height: 56px; padding: 0 18px; margin-bottom: 12px;
-      border: 1.5px solid transparent; border-radius: 14px;
-      background: #F0EBE3; color: #2C2825; text-align: center;
-      font: 400 17px "DM Sans", system-ui, sans-serif;
-    }
-    #gate input:focus { outline: none; border-color: #C4795A; }
-    #gate button {
-      width: 100%; height: 56px; border: 0; border-radius: 14px;
-      background: #C4795A; color: #FFFDFB; cursor: pointer;
-      font: 500 16px "DM Sans", system-ui, sans-serif;
-    }
-    #gate button:hover { background: #A8644A; }
-    #gate .g-wrong {
-      font: 400 15px "DM Sans", system-ui, sans-serif;
-      color: #C0504A; min-height: 22px; margin: 12px 0 0;
-    }
-  </style>
-  <script>
-    /* Synchronous, before <body> exists, so there is no flash of the page. */
-    (function () {
-      try {
-        if (sessionStorage.getItem('neala_preview_ok') === '1') return;
-      } catch (e) { /* private browsing: just ask again */ }
-      document.documentElement.className += ' locked';
-    })();
-  </script>
+  <!-- Private-preview gate. Synchronous so the page never flashes before it. -->
+  <link rel="stylesheet" href="assets/gate.css">
+  <script src="assets/gate.js"></script>
 
 </head>
 <body>
-
-<div id="gate">
-  <form id="gate-form">
-    <p class="g-brand">Neala</p>
-    <p class="g-hint">Private preview. Enter the word you were sent.</p>
-    <label class="sr-only" for="gate-input">Passcode</label>
-    <input id="gate-input" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="gate-wrong">
-    <button type="submit">Enter</button>
-    <p class="g-wrong" id="gate-wrong" aria-live="polite"></p>
-  </form>
-</div>
-
-<script>
-  /* A door, not a lock. The word ships in the page like any other text, so
-     this keeps a passer-by out and nothing more — the static host has no
-     server-side auth to offer. Nothing behind it is secret. */
-  (function () {
-    var PASSCODE = 'muscleup';
-    var form = document.getElementById('gate-form');
-    var input = document.getElementById('gate-input');
-    var wrong = document.getElementById('gate-wrong');
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (input.value.trim().toLowerCase() !== PASSCODE) {
-        wrong.textContent = 'That is not the word.';
-        input.value = '';
-        input.focus();
-        return;
-      }
-      try { sessionStorage.setItem('neala_preview_ok', '1'); } catch (err) {}
-      document.documentElement.className =
-        document.documentElement.className.replace(/\blocked\b/, '').trim();
-      window.scrollTo(0, 0);
-    });
-
-    if (document.documentElement.className.indexOf('locked') !== -1) input.focus();
-  })();
-</script>
 
 <a class="skip-link" href="#main">Skip to content</a>
 
@@ -125,22 +53,19 @@
     <symbol id="i-trending" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
     <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3"/><path d="M21 15v7"/></symbol>
     <symbol id="i-dumbbell" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="6" rx="1.5"/><rect x="18" y="9" width="4" height="6" rx="1.5"/><rect x="6" y="6.5" width="3" height="11" rx="1.5"/><rect x="15" y="6.5" width="3" height="11" rx="1.5"/><path d="M9 12h6"/></symbol>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path d="M17.05 12.53a4.36 4.36 0 0 1 2.08-3.66 4.47 4.47 0 0 0-3.52-1.9c-1.48-.15-2.91.88-3.67.88s-1.93-.86-3.17-.84a4.69 4.69 0 0 0-3.95 2.4c-1.69 2.93-.43 7.27 1.21 9.65.8 1.16 1.76 2.47 3.01 2.42 1.21-.05 1.67-.78 3.13-.78s1.88.78 3.16.75c1.31-.02 2.13-1.18 2.93-2.35a10.4 10.4 0 0 0 1.33-2.72 4.23 4.23 0 0 1-2.54-3.85ZM14.7 5.4a4.28 4.28 0 0 0 .98-3.07 4.36 4.36 0 0 0-2.82 1.46 4.07 4.07 0 0 0-1 2.96 3.6 3.6 0 0 0 2.84-1.35Z"/></symbol>
+    <symbol id="i-android" viewBox="0 0 24 24"><path d="M17.6 9.48 19.44 6.3a.63.63 0 0 0-.26-.85.64.64 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.64.64 0 0 0-.87-.2.63.63 0 0 0-.22.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52ZM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5Z"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
     <symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
     <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
-    <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="m12 3-1.9 5.8L4.3 10.7l5.8 1.9L12 18.4l1.9-5.8 5.8-1.9-5.8-1.9Z"/><path d="M5 3v4M3 5h4M19 17v4M17 19h4"/></symbol>
     <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
     <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5Z"/></symbol>
     <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
     <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.38 3.62a1 1 0 0 1 3 3L7.37 18.64a2 2 0 0 1-.86.5l-2.87.84a.5.5 0 0 1-.62-.62l.84-2.87a2 2 0 0 1 .5-.86Z"/></symbol>
-    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
     <symbol id="i-boundary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></symbol>
     <symbol id="i-pattern" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="8.5" ry="10.5"/><ellipse cx="12" cy="12" rx="5" ry="6.5"/><ellipse cx="12" cy="12" rx="1.8" ry="2.6"/></symbol>
-    <symbol id="i-pill" viewBox="0 0 24 24"><path d="M10.5 20.5 3.5 13.5a5 5 0 0 1 7-7l7 7a5 5 0 0 1-7 7Z"/><path d="m8.5 8.5 7 7"/></symbol>
     <symbol id="i-notebook" viewBox="0 0 24 24"><rect x="5" y="2" width="15" height="20" rx="2"/><path d="M2 6h3M2 10h3M2 14h3M2 18h3"/><path d="M10 7h6M10 12h6"/></symbol>
-    <symbol id="i-feather" viewBox="0 0 24 24"><path d="M12.67 19a2 2 0 0 0 1.42-.59l6.15-6.17a6 6 0 0 0-8.49-8.49L5.59 9.91A2 2 0 0 0 5 11.33V18a1 1 0 0 0 1 1Z"/><path d="M16 8 2 22"/><path d="M17.5 15H9"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
-    <symbol id="i-yes" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
-    <symbol id="i-no" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
   </defs>
 </svg>
 
@@ -155,7 +80,11 @@
       <a href="#faq">FAQ</a>
     </nav>
     <!-- App Store record: bundle com.lunahealth.app, Apple ID 6780959532. -->
-    <a class="btn btn--sm" href="https://apps.apple.com/app/id6780959532">Download</a>
+    <div class="nav-download">
+      <span class="nav-download-label">Download</span>
+      <a class="store-chip store-chip--apple" href="https://apps.apple.com/app/id6780959532" aria-label="Download for iPhone"><svg aria-hidden="true"><use href="#i-apple"/></svg></a>
+      <a class="store-chip store-chip--android" href="#" aria-label="Download for Android"><svg aria-hidden="true"><use href="#i-android"/></svg></a>
+    </div>
   </div>
 </header>
 
@@ -165,20 +94,22 @@
   <section class="hero" id="top">
     <div class="container hero-grid">
       <div>
-        <p class="eyebrow reveal">Personalised · Dynamic coaching · Peri &amp; post-menopause</p>
-        <h1 class="reveal" style="--i:1">Your pattern. Your plan. No guessing.</h1>
-        <p class="lead reveal" style="--i:2">Menopause isn't one experience — so your plan shouldn't be either. Neala identifies your unique hormonal pattern and builds your meals, movement and daily coaching around it.</p>
+        <h1 class="reveal" style="--i:1">Personalised menopause coach for women who’ve tried it all.</h1>
+        <p class="lead reveal" style="--i:2">Menopause isn't one experience — so your plan shouldn't be either. Neala identifies your unique menopause profile and builds your meals, movement and daily coaching around it.</p>
         <div class="cta-row reveal" style="--i:3">
-          <a class="btn" href="https://apps.apple.com/app/id6780959532">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.53a4.36 4.36 0 0 1 2.08-3.66 4.47 4.47 0 0 0-3.52-1.9c-1.48-.15-2.91.88-3.67.88s-1.93-.86-3.17-.84a4.69 4.69 0 0 0-3.95 2.4c-1.69 2.93-.43 7.27 1.21 9.65.8 1.16 1.76 2.47 3.01 2.42 1.21-.05 1.67-.78 3.13-.78s1.88.78 3.16.75c1.31-.02 2.13-1.18 2.93-2.35a10.4 10.4 0 0 0 1.33-2.72 4.23 4.23 0 0 1-2.54-3.85ZM14.7 5.4a4.28 4.28 0 0 0 .98-3.07 4.36 4.36 0 0 0-2.82 1.46 4.07 4.07 0 0 0-1 2.96 3.6 3.6 0 0 0 2.84-1.35Z"/></svg>
-            Download Neala
+          <a class="btn btn--apple" href="https://apps.apple.com/app/id6780959532">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            Download for iPhone
           </a>
-          <a class="btn btn--ghost" href="#how">See how it works</a>
+          <a class="btn btn--android" href="#"><!-- TODO: Google Play URL once the listing is public -->
+            <svg aria-hidden="true"><use href="#i-android"/></svg>
+            Download for Android
+          </a>
         </div>
         <ul class="badges reveal" style="--i:4">
-          <li><svg class="icon" aria-hidden="true"><use href="#i-pattern"/></svg>Built on your pattern, not a guess</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-pattern"/></svg>Built on your profile</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>Daily personalised coaching</li>
-          <li><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Your data stays private</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Approach proven on hundreds of women in menopause</li>
         </ul>
       </div>
       <div class="ph ph--portrait reveal" style="--i:2" data-label="Hero photo — woman 45–65, candid, warm, unretouched. Portrait 4:5."></div>
@@ -189,7 +120,6 @@
   <section class="pains" id="what">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Sound familiar?</p>
         <h2>It's not "just getting older."</h2>
       </div>
       <div class="grid grid--3">
@@ -221,7 +151,14 @@
         <cite>Sarah, 54</cite>
       </blockquote>
       <div class="cta-row band-cta reveal" style="--i:1">
-        <a class="btn" href="https://apps.apple.com/app/id6780959532">Download Neala</a>
+        <a class="btn btn--apple" href="https://apps.apple.com/app/id6780959532">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            Download for iPhone
+          </a>
+          <a class="btn btn--android" href="#"><!-- TODO: Google Play URL once the listing is public -->
+            <svg aria-hidden="true"><use href="#i-android"/></svg>
+            Download for Android
+          </a>
       </div>
     </div>
   </section>
@@ -230,19 +167,18 @@
   <section id="quick-look">
     <div class="container">
       <div class="section-head reveal">
-        <p class="eyebrow">Quick look</p>
         <h2>Four things Neala does for you.</h2>
       </div>
       <div class="grid grid--4">
         <div class="card card--plain reveal">
           <svg class="icon" aria-hidden="true"><use href="#i-pattern"/></svg>
-          <h3>Find your pattern</h3>
-          <p>A short assessment places you in one of four hormonal patterns — Wired but Tired, Metabolic Warrior, Crash &amp; Crave, or Futureproof.</p>
+          <h3>Find your profile</h3>
+          <p>A short assessment places you in one of our menopause profiles.</p>
         </div>
         <div class="card card--plain reveal" style="--i:1">
           <svg class="icon" aria-hidden="true"><use href="#i-plan"/></svg>
           <h3>Get a plan built for it</h3>
-          <p>Meals, workouts and supplements shaped around your pattern, not a generic fitness plan.</p>
+          <p>Meals, workouts and easy lifestyle changes shaped around your profile, not a generic fitness plan.</p>
         </div>
         <div class="card card--plain reveal" style="--i:2">
           <svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>
@@ -266,7 +202,7 @@
         <h2>Your plan adjusts to you — never the other way around.</h2>
         <p class="lead">Most programs ask you to white-knuckle through: starve yourself, cook complex and expensive meals with hundreds of ingredients, force the training, ignore what your body's telling you, and hope you can outlast it.</p>
         <p class="lead">Neala works differently. It listens — through your daily check-ins and symptom logs — and adjusts your plan as your body responds, not just at onboarding. Bad week? Sleep wrecked? Cravings through the roof? Your coach adapts, instead of asking you to push harder through a plan that isn't working for you right now.</p>
-        <p class="lead">And meals aren't prescribed to you. You choose what you actually want to eat, and Neala teaches you how to build the best portions and combinations for your pattern and your goals. No forcing down foods you hate, no white-knuckling — just an approach that's safe, sustainable and actually enjoyable.</p>
+        <p class="lead">And meals aren't prescribed to you. You choose what you actually want to eat, and Neala teaches you how to build the best portions and combinations for your profile and your goals. No forcing down foods you hate, no white-knuckling — just an approach that's safe, sustainable and actually enjoyable.</p>
       </div>
       <div class="reveal" style="--i:1">
         <!-- A jagged line settling into a steady one: the "adjusts" idea, per the design notes. -->
@@ -293,22 +229,22 @@
         <li class="step reveal">
           <span class="step-num" aria-hidden="true">1</span>
           <div>
-            <h3>Take the pattern assessment</h3>
-            <p>A short, guided quiz about your symptoms, history and lifestyle — no blood tests, no guesswork. Takes about 6 minutes.</p>
+            <h3>Take the profile assessment</h3>
+            <p>A short, guided quiz about your symptoms, history and lifestyle. Takes about 10 minutes.</p>
           </div>
         </li>
         <li class="step reveal" style="--i:1">
           <span class="step-num" aria-hidden="true">2</span>
           <div>
-            <h3>Get your pattern</h3>
-            <p>Based on your answers, you're matched to one of four hormonal patterns: Wired but Tired, Metabolic Warrior, Crash &amp; Crave, or Futureproof — each with its own underlying mechanism.</p>
+            <h3>Get your profile</h3>
+            <p>Based on your answers, you're matched to one of our menopause profiles — each with its own underlying mechanism.</p>
           </div>
         </li>
         <li class="step reveal" style="--i:2">
           <span class="step-num" aria-hidden="true">3</span>
           <div>
             <h3>Get your plan</h3>
-            <p>Meals, workouts and supplement guidance built specifically for your pattern — ready as soon as your assessment is scored.</p>
+            <p>Meals, workouts and easy lifestyle changes built specifically for your profile — ready as soon as your assessment is scored.</p>
           </div>
         </li>
         <li class="step reveal" style="--i:3">
@@ -327,38 +263,33 @@
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">Inside the app</p>
-        <h2>Everything you need. Nothing generic.</h2>
+        <h2>Everything you need, personalised.</h2>
       </div>
       <div class="grid grid--3">
         <div class="card reveal">
           <svg class="icon" aria-hidden="true"><use href="#i-pattern"/></svg>
-          <h3>The pattern assessment</h3>
-          <p>A short, guided quiz — not a symptom checklist — that identifies the hormonal mechanism behind what you're feeling: cortisol, metabolic adaptation, blood sugar, or prevention-stage.</p>
+          <h3>The profile assessment</h3>
+          <p>A short, guided quiz that identifies what's behind the symptoms you're experiencing.</p>
         </div>
         <div class="card reveal" style="--i:1">
           <svg class="icon" aria-hidden="true"><use href="#i-message"/></svg>
           <h3>Your daily coach</h3>
-          <p>Daily check-ins that actually listen — your coach reads your logged symptoms and energy, and adjusts your plan as your body responds, not just at onboarding. It remembers what you've tried, so it never suggests the magnesium you're already taking.</p>
+          <p>Daily check-ins that actually listen — your coach reads your logged symptoms and energy, and adjusts your plan as your body responds, not just at onboarding. It remembers what you've tried, so it's always in sync with your journey.</p>
         </div>
         <div class="card reveal" style="--i:2">
           <svg class="icon" aria-hidden="true"><use href="#i-utensils"/></svg>
           <h3>Meal plans, built around what you like</h3>
-          <p>Choose the meals you actually want to eat — Neala teaches you the best portions and combinations for your pattern and your goals, with a flexible swap system. No calorie counting, no forced restriction.</p>
+          <p>Choose the meals you actually like — Neala teaches you the right portions and combinations for your needs and goals, without extreme restrictions.</p>
         </div>
         <div class="card reveal" style="--i:3">
           <svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg>
           <h3>Workouts for where you are</h3>
-          <p>Strength-first training programmed to your pattern's energy and recovery needs, with a beginner path built in.</p>
+          <p>Strength-first training programmed to your profile's energy and recovery needs, with a beginner path built in.</p>
         </div>
         <div class="card reveal" style="--i:4">
-          <svg class="icon" aria-hidden="true"><use href="#i-pill"/></svg>
-          <h3>Supplement guidance</h3>
-          <p>A foundational stack plus pattern-specific additions, backed by evidence-based forms — flagged for interactions, never pushed.</p>
-        </div>
-        <div class="card reveal" style="--i:5">
           <svg class="icon" aria-hidden="true"><use href="#i-notebook"/></svg>
           <h3>Daily symptom logger</h3>
-          <p>Track sleep, energy and symptoms in seconds. Over time, it shows you the pattern — not just the bad days.</p>
+          <p>Track sleep, energy and symptoms in seconds. Over time, it shows you the pattern.</p>
         </div>
       </div>
     </div>
@@ -377,7 +308,7 @@
           <figcaption><span class="q-name">Laura</span><span class="q-role">Part-time nurse, mum of two</span></figcaption>
         </figure>
         <figure class="card quote-card reveal" style="--i:1">
-          <blockquote>“I'd tried every diet, cleanse and detox — all I got was the yo-yo effect. Neala's pattern assessment finally explained why nothing was sticking. The plan was tailored to me, and within weeks my clothes fit differently and I felt like a new person.”</blockquote>
+          <blockquote>“I'd tried every diet, cleanse and detox — all I got was the yo-yo effect. Neala's profile assessment finally explained why nothing was sticking. The plan was tailored to me, and within weeks my clothes fit differently and I felt like a new person.”</blockquote>
           <figcaption><span class="q-name">Naouel</span><span class="q-role">Recruitment manager</span></figcaption>
         </figure>
         <figure class="card quote-card reveal" style="--i:2">
@@ -415,63 +346,23 @@
     </div>
   </section>
 
-  <!-- ============ COMPARISON ============ -->
-  <section>
+  <!-- ============ CLOSING CTA ============ -->
+  <section class="closing">
     <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">The difference</p>
-        <h2>Not another period tracker.</h2>
-      </div>
-      <div class="compare-wrap reveal">
-        <table class="compare">
-          <thead>
-            <tr>
-              <th scope="col"><span class="sr-only">Capability</span></th>
-              <th scope="col" class="col-neala">Neala</th>
-              <th scope="col" class="col-other">Generic symptom trackers</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Personalised to your hormonal pattern</th>
-              <td class="col-neala"><svg class="mark mark--yes" aria-hidden="true"><use href="#i-yes"/></svg>Always</td>
-              <td class="col-other">One-size-fits-all advice</td>
-            </tr>
-            <tr>
-              <th scope="row">Plan built from your pattern (meals, training, supplements)</th>
-              <td class="col-neala"><svg class="mark mark--yes" aria-hidden="true"><use href="#i-yes"/></svg>Included</td>
-              <td class="col-other">Rarely, if ever</td>
-            </tr>
-            <tr>
-              <th scope="row">A coach that remembers your history</th>
-              <td class="col-neala"><svg class="mark mark--yes" aria-hidden="true"><use href="#i-yes"/></svg>Built in</td>
-              <td class="col-other">None</td>
-            </tr>
-            <tr>
-              <th scope="row">Designed for perimenopause and post-menopause specifically</th>
-              <td class="col-neala"><svg class="mark mark--yes" aria-hidden="true"><use href="#i-yes"/></svg>Always</td>
-              <td class="col-other">Often built for cycle-tracking only</td>
-            </tr>
-            <tr>
-              <th scope="row">Shame-free, no compliance scoring</th>
-              <td class="col-neala"><svg class="mark mark--yes" aria-hidden="true"><use href="#i-yes"/></svg>Always</td>
-              <td class="col-other">Varies</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ WHAT WE WON'T DO ============ -->
-  <section>
-    <div class="container prose">
       <div class="reveal">
-        <p class="eyebrow">Straight with you</p>
-        <h2>What we won't do.</h2>
+        <h2>Ready to stop guessing?</h2>
+        <p>Take the profile assessment and get a plan built around your body — not a generic one.</p>
+        <div class="cta-row">
+          <a class="btn btn--apple" href="https://apps.apple.com/app/id6780959532">
+            <svg aria-hidden="true"><use href="#i-apple"/></svg>
+            Download for iPhone
+          </a>
+          <a class="btn btn--android" href="#"><!-- TODO: Google Play URL once the listing is public -->
+            <svg aria-hidden="true"><use href="#i-android"/></svg>
+            Download for Android
+          </a>
+        </div>
       </div>
-      <p class="lead reveal" style="--i:1">Neala doesn't diagnose you, and we're upfront about why: your Neala pattern is based on your self-reported answers, not a clinical assessment. Think of it as "based on what you've told us, your pattern points to…" — not a medical verdict.</p>
-      <p class="lead reveal" style="--i:2">That's not a limitation. It's the honest version of personalisation — one that respects what an app can and can't tell you, and leaves the clinical calls to your doctor.</p>
     </div>
   </section>
 
@@ -483,66 +374,20 @@
         <h2>Why we built this.</h2>
       </div>
 
+      <p class="lead story-intro reveal">Menopause is universal. The way it shows up isn't. Yet the advice available is still mostly generic — written for “menopausal women” as a single group, rather than for the different hormonal mechanisms actually driving different women's symptoms. Neala exists to close that gap: personalised, profile-first coaching for a life stage that deserves more than one-size-fits-all.</p>
+
       <div class="split">
         <div class="reveal">
-          <p class="founder-quote">“I spent years coaching women through this exact transition and watching them get the same generic advice regardless of what was actually driving their symptoms. Neala exists because ‘eat less, move more’ was never the answer for a Wired but Tired pattern — and pretending otherwise wastes exactly the years women in this stage don't have to waste.”</p>
+          <p class="founder-quote">“I spent years coaching women through this exact transition and watching them get the same generic advice regardless of what was actually driving their symptoms. Neala exists because ‘eat less, move more’ was never the answer — and pretending otherwise wastes exactly the years women in this stage don't have to waste.”</p>
           <p class="founder-name">Dominika</p>
           <p class="founder-role">Founder — coaching and product</p>
         </div>
         <div class="ph ph--square reveal" style="--i:1" data-label="Photo of Dominika — candid, warm, working. Square 1:1."></div>
       </div>
 
-      <div class="prose story-body">
-        <p class="lead reveal">Neala started with a question we kept hearing from women in their 40s and 50s: “Why does every plan assume I'm the same as every other woman my age?”</p>
-        <p class="lead reveal" style="--i:1">Dominika spent years as a health and wellness coach working specifically with women navigating perimenopause and menopause, after an earlier career in the pharmaceutical industry. Coaching client after client through the same transition surfaced the same pattern: two women with completely different underlying hormonal drivers were handed the same generic advice, and told to push through when it didn't work.</p>
-        <p class="lead reveal" style="--i:2">That's the gap Neala was built to close — not another symptom tracker, but a coach that starts with why your body is behaving the way it is, and builds from there.</p>
-        <!-- TODO: Dominika asked for a paragraph here about Kuba's own story, and a quote
-             from him on personalised coaching from data. See REVIEW.md. -->
-      </div>
-
-      <div class="people">
-        <div class="person reveal">
-          <div class="ph" data-label=""></div>
-          <div>
-            <h3>Dominika</h3>
-            <p class="person-role">Founder — coaching and product</p>
-          </div>
-        </div>
-        <div class="person reveal" style="--i:1">
-          <div class="ph" data-label=""></div>
-          <div>
-            <h3>Kuba</h3>
-            <p class="person-role">Technical co-founder</p>
-          </div>
-        </div>
-      </div>
-      <p class="people-note reveal">Built with input from an early-access community of women actually living through perimenopause and menopause.</p>
-    </div>
-  </section>
-
-  <!-- ============ TRUST ============ -->
-  <section>
-    <div class="container">
-      <div class="section-head reveal">
-        <p class="eyebrow">Built on trust, not guesswork</p>
-        <h2>What you can count on.</h2>
-      </div>
-      <div class="grid grid--3">
-        <div class="card card--plain reveal">
-          <svg class="icon icon--sage" aria-hidden="true"><use href="#i-lock"/></svg>
-          <h3>Your data is yours</h3>
-          <p>What you log stays private and is never sold. You control what your coach remembers.</p>
-        </div>
-        <div class="card card--plain reveal" style="--i:1">
-          <svg class="icon icon--sage" aria-hidden="true"><use href="#i-sparkles"/></svg>
-          <h3>A coach with memory</h3>
-          <p>Neala's coach tracks what you've tried and what's helped — so you're never told to do something you're already doing.</p>
-        </div>
-        <div class="card card--plain reveal" style="--i:2">
-          <svg class="icon icon--sage" aria-hidden="true"><use href="#i-feather"/></svg>
-          <h3>No shame, no scoring</h3>
-          <p>No streak-shaming, no compliance percentages, no all-or-nothing messaging. Missed days don't reset your progress — they're just days.</p>
-        </div>
+      <div class="community-note reveal">
+        <svg class="icon icon--sage" aria-hidden="true"><use href="#i-users"/></svg>
+        <p>Built with input from an early-access community of women actually living through perimenopause and menopause.</p>
       </div>
     </div>
   </section>
@@ -556,62 +401,35 @@
       </div>
       <div class="faq reveal">
         <details>
-          <summary>Is Neala a medical app?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>No. Neala uses your self-reported answers to identify patterns and build recommendations — it's not a diagnostic or clinical tool. Always check with your doctor for medical concerns, especially around HRT, supplements, or new or worsening symptoms.</p></div>
+          <summary>How does the profile assessment work?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="answer"><p>A short onboarding quiz asks about your symptoms, history and lifestyle. Your answers are scored against multiple menopause profiles, and you're matched to the one that fits best.</p></div>
         </details>
         <details>
-          <summary>How does the pattern assessment work?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>A short onboarding quiz asks about your symptoms, history and lifestyle. Your answers are scored against four hormonal patterns, and you're matched to the one that fits best.</p></div>
-        </details>
-        <details>
-          <summary>What if I don't fit neatly into one pattern?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>Most women lean toward one dominant pattern even when a few symptoms overlap. Your plan is built around your dominant pattern, with room to adjust as you log more data.</p></div>
+          <summary>What if I don't fit neatly into one profile?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+          <div class="answer"><p>Most women lean toward one dominant profile even when a few symptoms overlap. Your plan is built around your dominant profile, with room to adjust as you log more data.</p></div>
         </details>
         <details>
           <summary>Will the coach replace my doctor?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>No. It's a daily companion for lifestyle coaching — nutrition, movement, symptoms and supplements — not a substitute for clinical care.</p></div>
-        </details>
-        <details>
-          <summary>Is my data private?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>Yes. Your information is encrypted and never sold. You decide what the app tracks and remembers. Full detail is in the <a href="https://www.notion.so/Privacy-Policy-36a91fb04665806789b8d635782736bb">privacy policy</a>.</p></div>
-        </details>
-        <details>
-          <summary>Do I need to count calories?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>No. Neala uses plate composition and portion guidance instead of calorie counting.</p></div>
+          <div class="answer"><p>No. It's a daily companion for lifestyle coaching — nutrition, movement and symptoms — not a substitute for clinical care.</p></div>
         </details>
         <details>
           <summary>Do I need a gym?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>No. Strength-first training, three full-body sessions a week for most patterns — two for Wired but Tired, building up as energy stabilises. Dumbbells, bands and bodyweight are all you need.</p></div>
-        </details>
-        <details>
-          <summary>What if I'm on HRT or medication?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>Neala flags supplement interactions and always recommends checking with your doctor or pharmacist before starting anything new.</p></div>
+          <div class="answer"><p>No. Strength-first training, three full-body sessions a week for most profiles — fewer at the start if your energy is low, building up as it stabilises. Dumbbells, bands and bodyweight are all you need.</p></div>
         </details>
         <details>
           <summary>Can I use Neala if I don't have obvious symptoms?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
-          <div class="answer"><p>Yes — the Futureproof pattern is built for exactly this: low symptom burden now, with a plan focused on prevention.</p></div>
+          <div class="answer"><p>Yes — one of our profiles is built for exactly this: low symptom burden now, with a plan focused on prevention.</p></div>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- ============ CLOSING CTA ============ -->
-  <section class="closing">
+  <!-- ============ UPDATES ============ -->
+  <section class="updates">
     <div class="container">
-      <div class="reveal">
-        <h2>Ready to stop guessing?</h2>
-        <p>Take the pattern assessment and get a plan built around your body — not a generic one.</p>
-        <div class="cta-row">
-          <a class="btn" href="https://apps.apple.com/app/id6780959532">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.05 12.53a4.36 4.36 0 0 1 2.08-3.66 4.47 4.47 0 0 0-3.52-1.9c-1.48-.15-2.91.88-3.67.88s-1.93-.86-3.17-.84a4.69 4.69 0 0 0-3.95 2.4c-1.69 2.93-.43 7.27 1.21 9.65.8 1.16 1.76 2.47 3.01 2.42 1.21-.05 1.67-.78 3.13-.78s1.88.78 3.16.75c1.31-.02 2.13-1.18 2.93-2.35a10.4 10.4 0 0 0 1.33-2.72 4.23 4.23 0 0 1-2.54-3.85ZM14.7 5.4a4.28 4.28 0 0 0 .98-3.07 4.36 4.36 0 0 0-2.82 1.46 4.07 4.07 0 0 0-1 2.96 3.6 3.6 0 0 0 2.84-1.35Z"/></svg>
-            Download Neala
-          </a>
-        </div>
-        <p class="cta-note closing-note">Takes 6 minutes · Free to download · Core features free forever</p>
-      </div>
-
-      <div class="waitlist reveal" style="--i:1">
-        <p class="waitlist-label">Not ready to download? We'll email you when there's something worth knowing.</p>
+      <div class="waitlist reveal">
+        <h2>Want to hear from us?</h2>
+        <p class="waitlist-label">News on deals and updates, straight to your inbox.</p>
         <form id="waitlist" novalidate>
           <label class="sr-only" for="email">Email address</label>
           <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
@@ -629,8 +447,8 @@
     <span>© <span id="year"></span> Neala</span>
     <nav aria-label="Legal">
       <a href="mailto:hello@neala.co">hello@neala.co</a>
-      <a href="https://www.notion.so/Privacy-Policy-36a91fb04665806789b8d635782736bb">Privacy</a>
-      <a href="https://app.notion.com/p/Terms-of-Service-38791fb04665801cba3bf5af4cbc5029">Terms</a>
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
     </nav>
     <p class="legal">Neala is a product of Meridian Studios sp. z o.o. All rights reserved. Neala is a coaching app and does not provide medical advice, diagnosis or treatment.</p>
   </div>

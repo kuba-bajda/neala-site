@@ -1,7 +1,8 @@
 # Before this page goes live
 
 Page copy now comes from Dominika's **"Neala Website Copy" doc** (Sep 17, 2026),
-used close to verbatim. Layout follows her **"Neala Design Notes"** doc.
+revised on 2026-10-11 to apply the agreed comment threads between Kuba and
+Dominika. Layout follows her **"Neala Design Notes"** doc.
 
 The testimonial and founder-quote placeholders are **gone** — those are her real
 quotes now. What's left below is mostly a set of claims that need checking
@@ -11,29 +12,10 @@ against what the app actually does.
 
 ## Blockers
 
-### 1. The site advertises supplement guidance; the app has none
+### 1. ~~Supplements~~ — resolved 2026-10-11
 
-The copy doc gives supplements their own feature card, a line in the comparison
-table, a step in "your path", an FAQ answer, and a named stack — *"vitamin D3+K2,
-omega-3, magnesium glycinate, plus two pattern-specific additions"*, with
-*"interaction risks flagged clearly"*.
-
-Grepping the app repo, **"supplement" appears once in the entire codebase**
-(`src/data/plan.ts`), and there is no supplement feature in `CLAUDE.md`'s screen
-inventory, no supplement data, no interaction checking.
-
-This is the most serious item on the page, for two reasons:
-
-- It advertises a feature a downloader won't find, which is an App Store
-  review problem as well as a conversion problem.
-- *"Any interaction risks are flagged clearly"* is a **safety claim**. Promising
-  interaction screening that doesn't exist is the kind of thing that matters if
-  someone relies on it.
-
-Decide one of: ship the feature first, cut supplements from the site, or reword
-to a roadmap framing. Affected copy is in the feature grid, step 3, the
-comparison table row, the "Will the coach replace my doctor?" answer, and the
-HRT/medication FAQ.
+All supplement copy is gone (feature card, step 3, FAQ answers, HRT FAQ, the
+magnesium line). The comparison table went with it.
 
 ### 2. "Proven on hundreds of women" needs substantiation
 
@@ -52,8 +34,9 @@ Related: the app is called **Luna** everywhere in code (bundle
 `com.lunahealth.app`); the listing needs to say Neala before these links go live,
 or a visitor who taps through lands on a differently-named app.
 
-Android was dropped from the page entirely — the copy doc doesn't mention it and
-the Play build is internal-testing only. Add it back when there's a public listing.
+An Android "Download Neala" button now sits next to the Apple one in the hero
+and the closing CTA, but it points at `#` (marked `TODO` in the markup) until the
+Play listing is public.
 
 ### 4. Testimonial consent
 
@@ -62,36 +45,14 @@ each woman has agreed to appear by name on a public marketing page.
 
 ---
 
-## Vocabulary conflict: "pattern" vs "profile"
+## Vocabulary — resolved 2026-10-11
 
-The website says **pattern** throughout ("your pattern", "the pattern
-assessment", "four hormonal patterns"). The app says **profile** — deliberately,
-per its `CLAUDE.md`: *"cluster is internal-only; all user-facing copy says 'your
-profile'."* Confirmed in `src/data/plan.ts`, which repeatedly says "for your
-profile".
+The site now says **menopause profile** to match the app ("profile") and to
+avoid the medical-claim feel of "hormonal". "Pattern" survives only where it
+means a trend in your logs. Profile names (Wired but Tired, etc.) and the number
+of profiles are no longer published.
 
-So a woman reads "find your pattern", downloads, and the app never uses the word.
-Pick one and align both.
-
-Dominika flagged this herself in a comment on the copy doc:
-
-> "here to avoid medical claims may need to be 'unique menopause profile'"
-
-Her other two open comments, both unaddressed:
-
-> "i think we need to mention it's AI but I wouldn't make it too pronounced —
-> think old generation may still be reluctant to the idea."
-
-Handled: the page says "your coach" and "a coach with memory" rather than
-"AI coach". Only the FAQ and the feature grid hint at it. Confirm that's the
-right level.
-
-> "I think would be good if you added a quote that is yours below — for example
-> how you saw potential of personalised coaching for athletes using data in this
-> particular space." / "Below here you could put a paragraph about you/your story."
-
-**Not written** — that's Kuba's quote and Kuba's story paragraph. There's a `TODO`
-comment at the right spot in the "Our story" section.
+Kuba's own quote and story paragraph are left out for now, by decision.
 
 ---
 
@@ -99,15 +60,35 @@ comment at the right spot in the "Our story" section.
 
 | Claim on the page | Status |
 |---|---|
-| "Takes about 6 minutes" (assessment) | App has 18 questions across 6 steps, **plus** allergens and meal config. Time it end to end. |
-| "Four hormonal patterns — Wired but Tired, Metabolic Warrior, Crash & Crave, Futureproof" | Matches the app's four clusters exactly. ✅ |
-| "Three full-body sessions a week, two for Wired but Tired" | Confirm against `src/data/plan.ts`. |
+| "Takes about 10 minutes" (assessment) | Agreed figure. Time it end to end once to be sure. |
 | "Dumbbells, bands and bodyweight — no gym" | Consistent with the app (`announcements.ts`: "Dumbbells up to 15lb at home, no gym"). ✅ |
 | "No calorie counting — plate composition and portion guidance" | Matches; the app ships portion strings. ✅ But macro/kcal tracking is in active development (LUN-16), which may contradict this later. |
-| "Your information is encrypted and never sold" | Supabase is EU-hosted. **PostHog is a sub-processor and its DPA is still unsigned** (open item in the app's `CLAUDE.md`). Clear that before publishing a privacy promise. |
-| "You control what your coach remembers" | The coach reads check-ins and notes automatically; there is no user-facing control over its memory. Either build it or reword. |
-| "Free to download · Core features free forever" | A commercial commitment. Confirm before it's public. |
-| "It never suggests the magnesium you're already taking" | Implies the coach knows your supplements. Tied to blocker 1. |
+| "Free to download" | "Core features free forever" removed; confirm the download itself is free. |
+
+---
+
+## Legal pages (/privacy, /terms) — added 2026-10-11
+
+Rewritten from the Notion versions (May/June 2026) against what the app actually
+does today. Open items before they replace the Notion links:
+
+- **Registered address + KRS** for Meridian Studios are missing (TODO in `privacy/index.html`).
+- **hello@neala.co** is the contact everywhere; it's still marked placeholder in the
+  app's `src/lib/links.ts`. Make sure the inbox exists.
+- **Slack is disclosed as a processor** because `slack-notify` sends note text and
+  food requests. Cleaner fix: stop sending free text to Slack, then drop it here.
+- **PostHog DPA** is still unsigned; the policy names PostHog as a processor.
+- **"Up to 12 months" analytics retention** — set that in PostHog to make it true.
+- **Sign in with Apple** is named on both pages (email/password, Apple, Google). It must ship
+  in the app before these pages go public.
+- **18+ only**, but the app has no age gate (the age question starts at "Under 35").
+- **Subscriptions clause** describes the RevenueCat paywall (7-day trial, auto-renew),
+  written as "where offered" since the paywall isn't live yet.
+- **The app still links to Notion** (`src/lib/links.ts`, settings, paywall, consent).
+  Point it at neala.co/privacy and /terms, and update the consent screen copy
+  ("request deletion by contacting us" — deletion is self-serve now).
+- Both pages load `../test/assets/styles.css` and copy the main header with links to
+  `/test/#…`; repoint both, plus the `og:image` URL, when /test becomes the homepage.
 
 ---
 
@@ -118,7 +99,6 @@ comment at the right spot in the "Our story" section.
 | Hero | Editorial photo, woman 45–65, candid, warm, unretouched | 4:5 portrait |
 | Founder section | Photo of Dominika | 1:1 square |
 | "Who's behind Neala" | Headshots of Dominika and Kuba | 1:1, shown in a circle |
-| `<head>` | Open Graph share image `assets/og-image.jpg` + the `og:image` tag | 1200×630 |
 
 Every photo slot is a dashed `.ph` block labelled with what goes in it, at the
 final aspect ratio — dropping in an `<img>` won't move the layout.
@@ -144,10 +124,10 @@ Dominika's reference images in the design notes are stock. License before use.
   converts better than a small grey badge. Swap in the official assets if you'd
   rather have them.
 - **"What we believe"** (three cards in the About section of the copy doc) was
-  dropped as a near-duplicate of "Built on trust, not guesswork". Say if you want
-  it back.
-- **Comparison table** uses the copy doc's five rows verbatim, with sage ticks and
-  no red — per the app's "never red for a negative state" rule.
+  not built.
+- **Removed by agreement (2026-10-11):** the comparison table (to return later
+  against named competitors), "What we won't do", "Built on trust, not
+  guesswork", and the FAQs on medical status, data privacy and HRT.
 
 ---
 
