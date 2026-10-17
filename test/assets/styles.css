@@ -120,11 +120,22 @@ h3 { font-size: 22px; font-weight: 600; }
 .btn:active { transform: translateY(1px); }
 .btn svg { width: 20px; height: 20px; fill: currentColor; stroke: none; }
 
-/* Store buttons borrow each store's own colours: black for Apple, Android green. */
-.btn--apple { background: #000; color: #fff; }
-.btn--apple:hover { background: #2B2B2B; }
-.btn--android { background: #3DDC84; color: #073042; }
-.btn--android:hover { background: #2FC775; }
+/* Store buttons follow the official badge look: black, thin grey rim,
+   small line over the store name. */
+.store-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 20px 0 16px;
+  background: #000; color: #fff;
+  border: 1px solid #A6A6A6; border-radius: 10px;
+  font: 500 23px/1 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -.01em; text-decoration: none;
+  transition: background .2s ease, transform .2s ease;
+}
+.store-badge:hover { background: #1F1F1F; }
+.store-badge:active { transform: translateY(1px); }
+.store-badge svg { width: 30px; height: 30px; flex: 0 0 auto; fill: currentColor; }
+.store-badge span { display: grid; gap: 2px; }
+.store-badge small { font-size: 12px; font-weight: 400; letter-spacing: 0; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (max-width: 520px) {
@@ -166,16 +177,15 @@ h3 { font-size: 22px; font-weight: 600; }
 /* Header download: one label, two store chips, sized to sit with the nav links. */
 .nav-download { display: flex; align-items: center; gap: 8px; }
 .nav-download-label { font: 500 15px var(--sans); color: var(--ink); margin-right: 4px; }
+/* The store badges cut down to their logos. */
 .store-chip {
-  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
+  display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px;
+  background: #000; color: #fff; border: 1px solid #A6A6A6;
   transition: background .2s ease, transform .2s ease;
 }
+.store-chip:hover { background: #1F1F1F; }
 .store-chip:active { transform: translateY(1px); }
 .store-chip svg { width: 20px; height: 20px; fill: currentColor; }
-.store-chip--apple { background: #000; color: #fff; }
-.store-chip--apple:hover { background: #2B2B2B; }
-.store-chip--android { background: #3DDC84; color: #073042; }
-.store-chip--android:hover { background: #2FC775; }
 
 /* ---------- Hero ---------- */
 
@@ -254,6 +264,14 @@ h3 { font-size: 22px; font-weight: 600; }
 
 .card--plain { background: transparent; padding: 0; }
 
+/* Quick look: more air between heading and items, less dead space below. */
+#quick-look { padding-bottom: 56px; }
+#quick-look .section-head { margin-bottom: 80px; }
+@media (max-width: 720px) {
+  #quick-look { padding-bottom: 40px; }
+  #quick-look .section-head { margin-bottom: 48px; }
+}
+
 /* Pain-point cards sit on a mauve tint, per the design notes. */
 .pains { background: rgba(166, 127, 142, .09); }
 .pains .card { background: var(--bg); box-shadow: var(--shadow); }
@@ -288,6 +306,7 @@ h3 { font-size: 22px; font-weight: 600; }
 .adjust-graphic path {
   fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
 }
+.adjust-graphic .axis { stroke: var(--muted); stroke-width: 1.25; opacity: .55; }
 .adjust-graphic text {
   font: 500 11px var(--sans); letter-spacing: .1em;
   text-transform: uppercase; fill: var(--muted);
@@ -335,6 +354,7 @@ h3 { font-size: 22px; font-weight: 600; }
   font: italic 500 clamp(22px, 3vw, 30px)/1.4 var(--serif);
   margin-bottom: 24px;
 }
+.founder-photo { width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 20px; }
 .founder-name { font: 500 15px var(--sans); }
 .founder-role { color: var(--muted); font-size: 15px; }
 
