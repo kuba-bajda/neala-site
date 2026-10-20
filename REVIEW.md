@@ -87,8 +87,6 @@ does today. Open items before they replace the Notion links:
 - **The app still links to Notion** (`src/lib/links.ts`, settings, paywall, consent).
   Point it at neala.co/privacy and /terms, and update the consent screen copy
   ("request deletion by contacting us" — deletion is self-serve now).
-- Both pages load `../test/assets/styles.css` and copy the main header with links to
-  `/test/#…`; repoint both, plus the `og:image` URL, when /test becomes the homepage.
 
 ---
 

@@ -5,14 +5,15 @@ build step, no dependencies.
 
 ```
 index.html         all markup and copy
+privacy/, terms/   legal pages; share the homepage's styles.css and header
 assets/styles.css  design system + layout
 assets/main.js     scroll reveal, nav, FAQ accordion, waitlist
 assets/favicon.png copied from the app (assets/favicon.png in the luna repo)
-REVIEW.md          everything that must be signed off before publishing
+REVIEW.md          open claims and legal items still to sign off
 ```
 
-**Read `REVIEW.md` before publishing.** The page contains placeholder
-testimonials and store links that don't resolve yet.
+The site is public. `REVIEW.md` lists what's still open — notably store links
+that don't resolve yet.
 
 ## Running it
 
