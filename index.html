@@ -58,6 +58,7 @@
     <symbol id="i-boundary" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></symbol>
     <symbol id="i-pattern" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="8.5" ry="10.5"/><ellipse cx="12" cy="12" rx="5" ry="6.5"/><ellipse cx="12" cy="12" rx="1.8" ry="2.6"/></symbol>
     <symbol id="i-notebook" viewBox="0 0 24 24"><rect x="5" y="2" width="15" height="20" rx="2"/><path d="M2 6h3M2 10h3M2 14h3M2 18h3"/><path d="M10 7h6M10 12h6"/></symbol>
+    <symbol id="i-play-video" viewBox="0 0 24 24"><path d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11.24-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
   </defs>
 </svg>
@@ -105,7 +106,15 @@
           <li><svg class="icon" aria-hidden="true"><use href="#i-check-circle"/></svg>Approach proven on hundreds of women in menopause</li>
         </ul>
       </div>
-      <div class="ph ph--portrait reveal" style="--i:2" data-label="Hero photo — woman 45–65, candid, warm, unretouched. Portrait 4:5."></div>
+      <!-- Plays only when she presses play. Native controls give pause, seek,
+           volume and fullscreen; main.js hides them behind the big play button
+           until the first play. Without JS the native controls just work. -->
+      <div class="hero-media reveal" style="--i:2">
+        <video id="hero-video" src="assets/hero.mp4" poster="assets/hero-poster.jpg" width="1920" height="1080" controls playsinline preload="metadata" aria-label="Neala in one minute: why menopause changes what works, and how the app builds your meals, workouts and daily habits around your profile."></video>
+        <button class="video-play" id="hero-play" type="button" aria-label="Play video" hidden>
+          <svg aria-hidden="true"><use href="#i-play-video"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 

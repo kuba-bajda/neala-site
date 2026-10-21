@@ -191,11 +191,12 @@ h3 { font-size: 22px; font-weight: 600; }
 
 .hero { padding: clamp(40px, 7vw, 88px) 0 clamp(56px, 8vw, 96px); }
 
-.hero-grid { display: grid; gap: 40px; align-items: center; }
+/* minmax(0, …): the video's intrinsic 1920px width must not size the track. */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; }
 
-/* On desktop the whole hero — copy, buttons and photo — fits the first screen:
-   the section fills the viewport under the header, and the photo column (whose
-   width drives the 4:5 box) and the headline scale with the viewport height. */
+/* On desktop the whole hero — copy, buttons and video — fits the first screen:
+   the section fills the viewport under the header. The video is 16:9, so it
+   takes the wider column to keep its on-screen text legible. */
 @media (min-width: 881px) {
   .hero {
     min-height: calc(100svh - var(--header-h));
@@ -203,17 +204,45 @@ h3 { font-size: 22px; font-weight: 600; }
     padding: 24px 0 32px;
   }
   .hero-grid {
-    grid-template-columns: minmax(0, 1fr) min(calc((100svh - var(--header-h) - 104px) * .8), 36vw, 480px);
-    gap: clamp(40px, 5vw, 72px);
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: clamp(32px, 4vw, 56px);
   }
 }
 
 .hero h1 {
-  font-size: clamp(36px, min(6.4vw, 7.4svh), 68px);
+  font-size: clamp(36px, min(4.8vw, 7.4svh), 56px);
   text-wrap: balance;
   letter-spacing: -.01em;
   margin-bottom: 24px;
 }
+/* A dark bezel so it reads as a video, not another illustration. */
+.hero-media {
+  position: relative;
+  padding: 8px; border-radius: 24px;
+  background: var(--ink);
+  box-shadow: 0 16px 40px rgba(44, 40, 37, .18);
+}
+.hero-media video {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+  border-radius: 16px; background: var(--ink);
+}
+.video-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  width: 80px; height: 80px; border: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer;
+  background: var(--primary); color: var(--bg);
+  box-shadow: 0 8px 24px rgba(44, 40, 37, .25);
+  transition: transform .2s ease, background .2s ease;
+}
+.video-play:hover { background: var(--primary-press); transform: translate(-50%, -50%) scale(1.06); }
+.video-play:focus-visible { outline: 3px solid var(--bg); outline-offset: 3px; }
+.video-play svg { width: 32px; height: 32px; fill: currentColor; margin-left: 4px; }
+.video-play[hidden] { display: none; }
+@media (max-width: 720px) {
+  .video-play { width: 64px; height: 64px; }
+  .video-play svg { width: 26px; height: 26px; }
+}
+
 .hero p.lead { font-size: 19px; max-width: 36ch; margin-bottom: 28px; }
 @media (max-width: 880px) { .hero p.lead { max-width: none; } }
 

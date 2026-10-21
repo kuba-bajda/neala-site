@@ -94,7 +94,6 @@ does today. Open items before they replace the Notion links:
 
 | Where | What | Aspect |
 |---|---|---|
-| Hero | Editorial photo, woman 45–65, candid, warm, unretouched | 4:5 portrait |
 | Founder section | Photo of Dominika | 1:1 square |
 | "Who's behind Neala" | Headshots of Dominika and Kuba | 1:1, shown in a circle |
 

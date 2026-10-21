@@ -30,6 +30,22 @@
     revealables.forEach(function (el) { revealObserver.observe(el); });
   }
 
+  /* ---------- Hero video ----------
+     Nothing plays until she asks. Before the first play, the native controls
+     are swapped for one big play button; after it, the native player takes
+     over (pause, seek, volume, fullscreen). */
+
+  var heroVideo = document.getElementById('hero-video');
+  var playButton = document.getElementById('hero-play');
+
+  heroVideo.controls = false;
+  playButton.hidden = false;
+  playButton.addEventListener('click', function () {
+    playButton.hidden = true;
+    heroVideo.controls = true;
+    heroVideo.play();
+  });
+
   /* ---------- Header hairline ----------
      The border only appears once the page has scrolled off the top. */
 
