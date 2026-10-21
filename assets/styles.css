@@ -215,16 +215,16 @@ h3 { font-size: 22px; font-weight: 600; }
   letter-spacing: -.01em;
   margin-bottom: 24px;
 }
-/* A dark bezel so it reads as a video, not another illustration. */
+/* A thin dark edge so it reads as a video, not another illustration. */
 .hero-media {
   position: relative;
-  padding: 8px; border-radius: 24px;
+  padding: 3px; border-radius: 20px;
   background: var(--ink);
-  box-shadow: 0 16px 40px rgba(44, 40, 37, .18);
+  box-shadow: 0 12px 32px rgba(44, 40, 37, .12);
 }
 .hero-media video {
   display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
-  border-radius: 16px; background: var(--ink);
+  border-radius: 17px; background: var(--ink);
 }
 .video-play {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
