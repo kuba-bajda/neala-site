@@ -139,9 +139,11 @@ h3 { font-size: 22px; font-weight: 600; }
 
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (max-width: 520px) {
-  /* Stacked on phones, sized to the longer label rather than the full width,
-     so both buttons match without empty space at the ends. */
-  .cta-row { display: grid; grid-template-columns: max-content; justify-content: start; }
+  /* Smaller on phones so both fit side by side; they wrap only below ~330px. */
+  .cta-row { gap: 8px; }
+  .store-badge { height: 46px; padding: 0 12px 0 10px; gap: 8px; font-size: 17px; border-radius: 8px; }
+  .store-badge svg { width: 22px; height: 22px; }
+  .store-badge small { font-size: 10px; }
   .band-cta, .closing .cta-row { justify-content: center; }
 }
 
@@ -244,7 +246,17 @@ h3 { font-size: 22px; font-weight: 600; }
 }
 
 .hero p.lead { font-size: 19px; max-width: 36ch; margin-bottom: 28px; }
-@media (max-width: 880px) { .hero p.lead { max-width: none; } }
+
+/* Phones and tablets: headline and lead, then the video, then the buttons and
+   badges. The copy wrapper dissolves so its children can be reordered around
+   the video; spacing comes from margins, not the grid gap. */
+@media (max-width: 880px) {
+  .hero-grid { gap: 0; }
+  .hero-copy { display: contents; }
+  .hero p.lead { max-width: none; font-size: 17px; }
+  .hero-media { order: 1; margin-bottom: 28px; }
+  .hero .cta-row, .hero .badges { order: 2; }
+}
 
 /* ---------- Photo placeholders ----------
    Deliberately visible: the layout is final, the asset gap should be obvious
