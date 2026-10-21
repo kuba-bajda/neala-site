@@ -256,6 +256,7 @@ h3 { font-size: 22px; font-weight: 600; }
   .hero p.lead { max-width: none; font-size: 17px; }
   .hero-media { order: 1; margin-bottom: 28px; }
   .hero .cta-row, .hero .badges { order: 2; }
+  .hero .cta-row { justify-content: center; }
 }
 
 /* ---------- Photo placeholders ----------
