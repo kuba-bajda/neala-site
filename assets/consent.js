@@ -6,7 +6,7 @@
 // GA_ID empty = no Google tag, no banner, no footer link. Paste the GA4
 // measurement id (G-…) to switch it all on.
 (function () {
-  var GA_ID = "";
+  var GA_ID = "G-BE3GQ4BCDH";
   var KEY = "neala.consent"; // "granted" | "denied"
   if (!GA_ID) return;
 
