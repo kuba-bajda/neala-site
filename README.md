@@ -6,6 +6,8 @@ build step, no dependencies.
 ```
 index.html         all markup and copy
 privacy/, terms/   legal pages; share the homepage's styles.css and header
+get/               smart download link (/get?c=<campaign>): iPhone → App Store, Android → Play,
+                   else homepage. Store ids are placeholders at the top of its script (LUN-255)
 assets/styles.css  design system + layout
 assets/main.js     scroll reveal, nav, FAQ accordion, waitlist
 assets/favicon.png copied from the app (assets/favicon.png in the luna repo)

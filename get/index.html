@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Get Neala</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <script>
+    // Smart download link (LUN-255). The ManyChat quiz's Download button opens
+    // neala.co/get?c=<campaign>; iPhone goes to the App Store, Android to Play,
+    // anything else to the homepage. Runs before the stylesheet so the redirect
+    // isn't held up by it. The page below is only the fallback if the in-app
+    // browser blocks the redirect.
+    //
+    // Placeholders until the listings are public: fill in the ids below and the
+    // campaign tags switch on by themselves.
+    var IOS_APP_ID = "";          // App Store Apple ID, digits only
+    var IOS_PROVIDER_TOKEN = "";  // App Store Connect "pt" (provider id)
+    var ANDROID_PACKAGE = "";     // Play package name
+    var IOS_FALLBACK = "https://apps.apple.com/";
+    var ANDROID_FALLBACK = "https://play.google.com/store/apps";
+
+    function storeLinks(campaign) {
+      var ios = IOS_FALLBACK, android = ANDROID_FALLBACK;
+      if (IOS_APP_ID) {
+        ios = "https://apps.apple.com/app/id" + IOS_APP_ID + "?ct=" + campaign +
+          (IOS_PROVIDER_TOKEN ? "&pt=" + IOS_PROVIDER_TOKEN : "");
+      }
+      if (ANDROID_PACKAGE) {
+        var referrer = "utm_source=instagram&utm_medium=dm_quiz&utm_campaign=" + campaign;
+        android = "https://play.google.com/store/apps/details?id=" + ANDROID_PACKAGE +
+          "&referrer=" + encodeURIComponent(referrer);
+      }
+      return { ios: ios, android: android };
+    }
+
+    function platform(ua, maxTouchPoints) {
+      if (/iPhone|iPad|iPod/.test(ua)) return "ios";
+      if (/Macintosh/.test(ua) && maxTouchPoints > 1) return "ios"; // iPadOS reports as a Mac
+      if (/Android/.test(ua)) return "android";
+      return "other";
+    }
+
+    // Campaign tags are short slugs (ig_quiz, tiktok); anything else falls back.
+    var raw = new URLSearchParams(location.search).get("c") || "";
+    var campaign = /^[a-z0-9_-]{1,40}$/.test(raw) ? raw : "ig_quiz";
+    var links = storeLinks(campaign);
+    var target = platform(navigator.userAgent, navigator.maxTouchPoints || 0);
+    if (target !== "other") location.replace(links[target]);
+    else location.replace("/");
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <style>
+    .get { min-height: 100vh; display: grid; place-content: center; gap: 24px; text-align: center; padding: 24px; }
+    .get h1 { font-family: "Cormorant Garamond", serif; font-weight: 600; font-size: 32px; margin: 0; }
+    .get p { margin: 0; }
+    .get .store-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  </style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-apple" viewBox="0 0 24 24"><path d="M17.05 12.53a4.36 4.36 0 0 1 2.08-3.66 4.47 4.47 0 0 0-3.52-1.9c-1.48-.15-2.91.88-3.67.88s-1.93-.86-3.17-.84a4.69 4.69 0 0 0-3.95 2.4c-1.69 2.93-.43 7.27 1.21 9.65.8 1.16 1.76 2.47 3.01 2.42 1.21-.05 1.67-.78 3.13-.78s1.88.78 3.16.75c1.31-.02 2.13-1.18 2.93-2.35a10.4 10.4 0 0 0 1.33-2.72 4.23 4.23 0 0 1-2.54-3.85ZM14.7 5.4a4.28 4.28 0 0 0 .98-3.07 4.36 4.36 0 0 0-2.82 1.46 4.07 4.07 0 0 0-1 2.96 3.6 3.6 0 0 0 2.84-1.35Z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path fill="#00C3FF" d="M3.5 2 13 12 3.5 22Z"/><path fill="#00E676" d="M3.5 2 16.6 9.5 13 12Z"/><path fill="#FFC400" d="M16.6 9.5 21 12 16.6 14.5 13 12Z"/><path fill="#FF3D57" d="M3.5 22 13 12 16.6 14.5Z"/></symbol>
+  </defs>
+</svg>
+
+<main class="get">
+  <h1>Neala</h1>
+  <p>Opening the store… If nothing happens, tap your store below.</p>
+  <div class="store-row">
+    <a class="store-badge" id="get-ios" href="https://apps.apple.com/">
+      <svg aria-hidden="true"><use href="#i-apple"/></svg>
+      <span><small>Available on the</small> App Store</span>
+    </a>
+    <a class="store-badge" id="get-android" href="https://play.google.com/store/apps">
+      <svg aria-hidden="true"><use href="#i-play"/></svg>
+      <span><small>Get it on</small> Google Play</span>
+    </a>
+  </div>
+</main>
+
+<script>
+  // Fallback buttons carry the same campaign tags as the redirect.
+  document.getElementById("get-ios").href = links.ios;
+  document.getElementById("get-android").href = links.android;
+</script>
+</body>
+</html>
