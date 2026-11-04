@@ -50,10 +50,10 @@
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-label", "Cookie choice");
     b.innerHTML =
-      '<p>Can we use Google Analytics cookies to see how people find and use this site? ' +
-      'Nothing is stored unless you say yes. <a href="/privacy/#website">Privacy policy</a></p>' +
+      '<p>We use cookies to understand how visitors use our website. ' +
+      'You can accept or decline analytics cookies. <a href="/privacy/#website">Privacy policy</a></p>' +
       '<div class="cookie-actions">' +
-      '<button type="button" class="cookie-btn cookie-decline">No thanks</button>' +
+      '<button type="button" class="cookie-btn cookie-decline">Decline</button>' +
       '<button type="button" class="cookie-btn cookie-accept">Accept</button>' +
       "</div>";
     b.querySelector(".cookie-accept").addEventListener("click", function () { decide("granted"); });
