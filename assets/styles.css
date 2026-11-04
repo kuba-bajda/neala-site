@@ -547,3 +547,21 @@ h3 { font-size: 22px; font-weight: 600; }
 .legal-doc th, .legal-doc td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); }
 .legal-doc th { font-weight: 500; color: var(--muted); }
 .legal-doc .table-wrap { overflow-x: auto; }
+
+/* Cookie banner (assets/consent.js). Accept and decline are the same size:
+   refusing has to be as easy as agreeing. */
+.cookie-banner {
+  position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 50;
+  max-width: 560px; margin: 0 auto; padding: 16px;
+  background: var(--surface); color: var(--ink); border-radius: var(--radius); box-shadow: var(--shadow);
+  font-size: 15px; line-height: 1.5;
+}
+.cookie-banner p { margin: 0 0 16px; }
+.cookie-actions { display: flex; gap: 12px; }
+.cookie-btn {
+  flex: 1 1 0; height: 48px; border-radius: 12px; font: 500 15px var(--sans); cursor: pointer;
+  border: 1.5px solid var(--primary);
+}
+.cookie-accept { background: var(--primary); color: var(--bg); }
+.cookie-accept:hover { background: var(--primary-press); border-color: var(--primary-press); }
+.cookie-decline { background: transparent; color: var(--primary); }

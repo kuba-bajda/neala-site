@@ -10,6 +10,8 @@ get/               smart download link (/get?c=<campaign>): iPhone → App Store
                    else homepage. Store ids are placeholders at the top of its script (LUN-255)
 assets/styles.css  design system + layout
 assets/main.js     scroll reveal, nav, FAQ accordion, waitlist
+assets/consent.js  GA4 + cookie banner (Consent Mode v2, analytics denied until Accept).
+                   Off while GA_ID at its top is empty (LUN-166)
 assets/favicon.png copied from the app (assets/favicon.png in the luna repo)
 REVIEW.md          open claims and legal items still to sign off
 ```
