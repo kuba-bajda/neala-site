@@ -102,52 +102,69 @@
   });
 
   /* ---------- Waitlist ----------
+     Every .signup block on the page is the same one-step form (email + send).
      Posts straight to the `waitlist` table on the Neala Supabase project via
      PostgREST. Insert-only RLS: the anon key has INSERT but no SELECT, so this
-     is a plain insert rather than an upsert (an upsert would need SELECT). */
+     is a plain insert rather than an upsert (an upsert would need SELECT).
+     `source` records which form she used (data-source, max 40 chars). */
 
   var SUPABASE_URL = 'https://fhbalobhjoxwsscuadyk.supabase.co';
   var SUPABASE_ANON_KEY = 'sb_publishable_dJAZFeYFl8la9ukj0JCwrg_r7sd3Vhj';
 
-  var form = document.getElementById('waitlist');
-  var input = document.getElementById('email');
-  var button = form.querySelector('button');
-  var msg = document.getElementById('msg');
+  document.querySelectorAll('.signup').forEach(function (block) {
+    var form = block.querySelector('form');
+    var input = form.querySelector('input');
+    var button = form.querySelector('button');
+    var msg = block.querySelector('.msg');
 
-  function show(text) { msg.textContent = text; }
+    function show(text) { msg.textContent = text; }
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    var email = input.value.trim().toLowerCase();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      show('Please enter a valid email address.');
-      return;
-    }
+      var email = input.value.trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        show('Please enter a valid email address.');
+        input.focus();
+        return;
+      }
 
-    button.disabled = true;
-    show('');
+      button.disabled = true;
+      show('Sending…');
 
-    fetch(SUPABASE_URL + '/rest/v1/waitlist', {
-      method: 'POST',
-      headers: {
-        'apikey': SUPABASE_ANON_KEY,
-        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify({ email: email, source: 'landing' })
-    })
-      .then(function (res) {
-        // 409 is the unique-constraint violation: she is already on the list,
-        // which is the same outcome for her as a fresh sign-up.
-        if (!res.ok && res.status !== 409) throw new Error('HTTP ' + res.status);
-        show("You're on the list. We'll be in touch.");
-        form.reset();
+      fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email: email, source: form.dataset.source || 'landing' })
       })
-      .catch(function () {
-        show('Something went wrong. Please try again in a moment.');
-        button.disabled = false;
-      });
+        .then(function (res) {
+          // 409 is the unique-constraint violation: she is already on the list,
+          // which is the same outcome for her as a fresh sign-up.
+          if (!res.ok && res.status !== 409) throw new Error('HTTP ' + res.status);
+          show("You're on the list. We'll email you the day Neala launches.");
+          form.reset();
+          button.disabled = false;
+        })
+        .catch(function () {
+          show('Something went wrong. Please try again in a moment.');
+          button.disabled = false;
+        });
+    });
+  });
+
+  /* Header "Get early access" scrolls to the hero form and puts the cursor in it. */
+  document.querySelectorAll('[data-focus-signup]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var target = document.getElementById('email-hero');
+      if (!target) return; // other pages: plain link to /#top
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+      target.focus({ preventScroll: true });
+    });
   });
 })();

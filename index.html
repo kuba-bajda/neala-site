@@ -46,8 +46,6 @@
     <symbol id="i-trending" viewBox="0 0 24 24"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
     <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6a2 2 0 0 0 2 2h3"/><path d="M21 15v7"/></symbol>
     <symbol id="i-dumbbell" viewBox="0 0 24 24"><rect x="2" y="9" width="4" height="6" rx="1.5"/><rect x="18" y="9" width="4" height="6" rx="1.5"/><rect x="6" y="6.5" width="3" height="11" rx="1.5"/><rect x="15" y="6.5" width="3" height="11" rx="1.5"/><path d="M9 12h6"/></symbol>
-    <symbol id="i-apple" viewBox="0 0 24 24"><path d="M17.05 12.53a4.36 4.36 0 0 1 2.08-3.66 4.47 4.47 0 0 0-3.52-1.9c-1.48-.15-2.91.88-3.67.88s-1.93-.86-3.17-.84a4.69 4.69 0 0 0-3.95 2.4c-1.69 2.93-.43 7.27 1.21 9.65.8 1.16 1.76 2.47 3.01 2.42 1.21-.05 1.67-.78 3.13-.78s1.88.78 3.16.75c1.31-.02 2.13-1.18 2.93-2.35a10.4 10.4 0 0 0 1.33-2.72 4.23 4.23 0 0 1-2.54-3.85ZM14.7 5.4a4.28 4.28 0 0 0 .98-3.07 4.36 4.36 0 0 0-2.82 1.46 4.07 4.07 0 0 0-1 2.96 3.6 3.6 0 0 0 2.84-1.35Z"/></symbol>
-    <symbol id="i-play" viewBox="0 0 24 24"><path fill="#00C3FF" d="M3.5 2 13 12 3.5 22Z"/><path fill="#00E676" d="M3.5 2 16.6 9.5 13 12Z"/><path fill="#FFC400" d="M16.6 9.5 21 12 16.6 14.5 13 12Z"/><path fill="#FF3D57" d="M3.5 22 13 12 16.6 14.5Z"/></symbol>
     <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
     <symbol id="i-check-circle" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
     <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
@@ -73,12 +71,7 @@
       <a href="#story">Our story</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <!-- App Store record: bundle com.lunahealth.app, Apple ID 6780959532. -->
-    <div class="nav-download">
-      <span class="nav-download-label">Download</span>
-      <a class="store-chip" href="https://apps.apple.com/app/id6780959532" aria-label="Download on the App Store"><svg aria-hidden="true"><use href="#i-apple"/></svg></a>
-      <a class="store-chip" href="#" aria-label="Get it on Google Play"><svg aria-hidden="true"><use href="#i-play"/></svg></a>
-    </div>
+    <a class="btn btn--sm" href="#top" data-focus-signup>Get early access</a>
   </div>
 </header>
 
@@ -90,15 +83,13 @@
       <div class="hero-copy">
         <h1 class="reveal" style="--i:1">Personalised menopause approach for women who’ve tried it all.</h1>
         <p class="lead reveal" style="--i:2">Menopause isn't one experience — so your plan shouldn't be either. Neala identifies your unique menopause profile and builds your meals, movement and daily coaching around it.</p>
-        <div class="cta-row reveal" style="--i:3">
-          <a class="store-badge" href="https://apps.apple.com/app/id6780959532">
-            <svg aria-hidden="true"><use href="#i-apple"/></svg>
-            <span><small>Available on the</small> App Store</span>
-          </a>
-          <a class="store-badge" href="#"><!-- TODO: Google Play URL once the listing is public -->
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
-            <span><small>Get it on</small> Google Play</span>
-          </a>
+        <div class="signup reveal" style="--i:3">
+          <form class="signup-form" data-source="landing-hero" novalidate>
+            <label class="sr-only" for="email-hero">Email address</label>
+            <input id="email-hero" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required>
+            <button class="btn" type="submit">Notify me</button>
+          </form>
+          <p class="msg" aria-live="polite">Launching soon. We’ll email you the day Neala is live.</p>
         </div>
         <ul class="badges reveal" style="--i:4">
           <li><svg class="icon" aria-hidden="true"><use href="#i-pattern"/></svg>Built on your profile</li>
@@ -152,16 +143,14 @@
         “I honestly couldn't recognise myself in the mirror. I'd tried every extreme diet under the sun — nothing worked, until I discovered Neala. Now I'm eating properly, feeling like myself again, and way more focused. Not to mention my clothes finally fit me like they used to!”
         <cite>Sarah, 54</cite>
       </blockquote>
-      <div class="cta-row band-cta reveal" style="--i:1">
-        <a class="store-badge" href="https://apps.apple.com/app/id6780959532">
-            <svg aria-hidden="true"><use href="#i-apple"/></svg>
-            <span><small>Available on the</small> App Store</span>
-          </a>
-          <a class="store-badge" href="#"><!-- TODO: Google Play URL once the listing is public -->
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
-            <span><small>Get it on</small> Google Play</span>
-          </a>
-      </div>
+      <div class="signup band-cta reveal" style="--i:1">
+          <form class="signup-form" data-source="landing-band" novalidate>
+            <label class="sr-only" for="email-band">Email address</label>
+            <input id="email-band" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required>
+            <button class="btn" type="submit">Notify me</button>
+          </form>
+          <p class="msg" aria-live="polite">Launching soon. Be the first to know.</p>
+        </div>
     </div>
   </section>
 
@@ -356,16 +345,14 @@
     <div class="container">
       <div class="reveal">
         <h2>Ready to stop guessing?</h2>
-        <p>Take the profile assessment and get a plan built around your body — not a generic one.</p>
-        <div class="cta-row">
-          <a class="store-badge" href="https://apps.apple.com/app/id6780959532">
-            <svg aria-hidden="true"><use href="#i-apple"/></svg>
-            <span><small>Available on the</small> App Store</span>
-          </a>
-          <a class="store-badge" href="#"><!-- TODO: Google Play URL once the listing is public -->
-            <svg aria-hidden="true"><use href="#i-play"/></svg>
-            <span><small>Get it on</small> Google Play</span>
-          </a>
+        <p>Neala is launching soon. Leave your email and you’ll be among the first to take the profile assessment and get a plan built around your body — not a generic one.</p>
+        <div class="signup">
+          <form class="signup-form" data-source="landing-closing" novalidate>
+            <label class="sr-only" for="email-closing">Email address</label>
+            <input id="email-closing" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Your email address" required>
+            <button class="btn" type="submit">Notify me</button>
+          </form>
+          <p class="msg" aria-live="polite">One email when we launch. No spam.</p>
         </div>
       </div>
     </div>
@@ -402,7 +389,7 @@
     <div class="container">
       <div class="section-head reveal">
         <p class="eyebrow">Common questions</p>
-        <h2>Before you download.</h2>
+        <h2>Good to know.</h2>
       </div>
       <div class="faq reveal">
         <details>
@@ -425,22 +412,6 @@
           <summary>Can I use Neala if I don't have obvious symptoms?<svg class="chev" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
           <div class="answer"><p>Yes — one of our profiles is built for exactly this: low symptom burden now, with a plan focused on prevention.</p></div>
         </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ UPDATES ============ -->
-  <section class="updates">
-    <div class="container">
-      <div class="waitlist reveal">
-        <h2>Want to hear from us?</h2>
-        <p class="waitlist-label">News on deals and updates, straight to your inbox.</p>
-        <form id="waitlist" novalidate>
-          <label class="sr-only" for="email">Email address</label>
-          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-          <button class="btn" type="submit">Keep me posted</button>
-        </form>
-        <p class="msg" id="msg" aria-live="polite"></p>
       </div>
     </div>
   </section>

@@ -37,16 +37,22 @@ Body text is 17px because the audience is 45–65 — same reasoning as the app.
 Icons are one inline SVG sprite at the top of `index.html` (lucide geometry,
 1.5px stroke). Add new ones as `<symbol>` there and reference with `<use>`.
 
-## Email capture
+## Email capture (pre-launch)
 
-The form at the bottom posts to the `waitlist` table on the Neala Supabase
-project via PostgREST with the publishable anon key. RLS is insert-only — the
-anon role has INSERT but no SELECT, so this is a plain insert rather than an
-upsert (an upsert needs SELECT). A duplicate email returns 409 from the unique
+Until the app is public, every CTA is a one-step "Notify me" email form
+(`.signup` blocks: hero, quote band, closing; the header's "Get early access"
+scrolls to the hero form). All of them post to the `waitlist` table on the
+Neala Supabase project via PostgREST with the publishable anon key, with
+`source` = the form's `data-source` (`landing-hero`, `landing-band`,
+`landing-closing`; older rows say `landing`). RLS is insert-only — the anon
+role has INSERT but no SELECT, so this is a plain insert rather than an upsert
+(an upsert needs SELECT). A duplicate email returns 409 from the unique
 constraint, which the page treats as success.
 
 Migration: `supabase/migrations/0018_waitlist.sql` in the app repo.
 To read sign-ups: Supabase dashboard → Table editor → `waitlist`.
+At launch, swap the `.signup` blocks back for store buttons (`.store-badge`
+styles are still in `styles.css`, used by `/get`).
 
 ## Hosting
 
