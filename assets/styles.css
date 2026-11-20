@@ -535,6 +535,7 @@ h3 { font-size: 22px; font-weight: 600; }
 .legal-doc p, .legal-doc li { color: var(--ink); }
 .legal-doc p + p { margin-top: 12px; }
 .legal-doc ul { padding-left: 22px; margin: 8px 0 0; display: grid; gap: 6px; }
+.legal-doc ul + p { margin-top: 16px; }
 .legal-doc a { color: var(--primary); }
 .legal-doc table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 15px; }
 .legal-doc th, .legal-doc td { text-align: left; vertical-align: top; padding: 12px 12px 12px 0; border-bottom: 1px solid var(--line); }
