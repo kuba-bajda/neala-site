@@ -103,10 +103,11 @@
 
   /* ---------- Waitlist ----------
      Every .signup block on the page is the same one-step form (email + send).
-     Posts straight to the `waitlist` table on the Neala Supabase project via
-     PostgREST. Insert-only RLS: the anon key has INSERT but no SELECT, so this
-     is a plain insert rather than an upsert (an upsert would need SELECT).
-     `source` records which form she used (data-source, max 40 chars). */
+     Calls the join_waitlist() function on the Neala Supabase project. It
+     answers the same for a new and an already-listed email, so the endpoint
+     never reveals who is on the list (launch audit SE-10); a duplicate is
+     simply not added again. `source` records which form she used
+     (data-source, max 40 chars). */
 
   var SUPABASE_URL = 'https://fhbalobhjoxwsscuadyk.supabase.co';
   var SUPABASE_ANON_KEY = 'sb_publishable_dJAZFeYFl8la9ukj0JCwrg_r7sd3Vhj';
@@ -132,7 +133,7 @@
       button.disabled = true;
       show('Sending…');
 
-      fetch(SUPABASE_URL + '/rest/v1/waitlist', {
+      fetch(SUPABASE_URL + '/rest/v1/rpc/join_waitlist', {
         method: 'POST',
         headers: {
           'apikey': SUPABASE_ANON_KEY,
@@ -140,12 +141,10 @@
           'Content-Type': 'application/json',
           'Prefer': 'return=minimal'
         },
-        body: JSON.stringify({ email: email, source: form.dataset.source || 'landing' })
+        body: JSON.stringify({ p_email: email, p_source: form.dataset.source || 'landing' })
       })
         .then(function (res) {
-          // 409 is the unique-constraint violation: she is already on the list,
-          // which is the same outcome for her as a fresh sign-up.
-          if (!res.ok && res.status !== 409) throw new Error('HTTP ' + res.status);
+          if (!res.ok) throw new Error('HTTP ' + res.status);
           show("You're on the list. We'll email you the day Neala launches.");
           form.reset();
           button.disabled = false;
