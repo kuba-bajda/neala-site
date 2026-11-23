@@ -452,12 +452,13 @@ h3 { font-size: 22px; font-weight: 600; }
 
 .msg { font-size: 15px; min-height: 24px; margin-top: 12px; color: var(--muted); }
 
-/* "Launching soon" pill at the start of the signup note: reads as a status,
-   not as more body text. JS replaces the note's text after a submit, which
-   removes the pill too; that is intended. */
+/* "Launching soon" pill above each signup form: reads as a status, not as
+   more body text. Sits outside .msg, so a submit's message never removes it. */
+.soon-above { margin: 0 0 12px; line-height: 1; }
+.band-cta .soon-above { text-align: center; }
 .soon {
   display: inline-flex; align-items: center; gap: 7px;
-  margin-right: 6px; padding: 3px 11px 3px 9px;
+  padding: 3px 11px 3px 9px;
   border-radius: 999px;
   background: rgba(196, 121, 90, .12);
   color: var(--primary-press);
